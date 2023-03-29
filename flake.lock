@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "emacs-overlay": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1680058124,
+        "narHash": "sha256-CjvvSrByLpk2ZHldq7KYBfIxCsVkyH9vptm3axErWvk=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "cc6ed01ef2d28fae346fe537f67956d986bab5e7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -37,10 +53,27 @@
         "type": "github"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1680058784,
+        "narHash": "sha256-KysBW4vTOODh1tVVd5d0fY06z4VqnNNwmeBvRtVNmR0=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "96bc90302dbd0b442f32db6ef8adbb09ca543f82",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nur": "nur"
       }
     },
     "utils": {

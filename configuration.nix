@@ -2,11 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, home-manager, ... }:
+{ config, pkgs, home-manager, nur, ... }:
 {
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 	imports = [ # Include the results of the hardware scan.
 		./hardware-configuration.nix
+		nur.nixosModules.nur
 		home-manager.nixosModule
 	];
 
@@ -38,7 +39,6 @@
 	console = {
 		font = "Lat2-Terminus16";
 		keyMap = "us";
-# useXkbConfig = true; # use xkbOptions in tty.
 	};
 
 # Enable the X11 windowing system.
@@ -92,7 +92,9 @@
 		isNormalUser = true;
 		extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
 	};
+	security.sudo.wheelNeedsPassword = false;
 	home-manager.useGlobalPkgs = true;
+	home-manager.useUserPackages = true;
 	home-manager.users.sahir = { pkgs, ... }: {
 programs = {
 		git = {

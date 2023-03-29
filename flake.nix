@@ -7,9 +7,19 @@
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+
+		nur = {
+			url = "github:nix-community/NUR";
+		};
+
+		emacs-overlay = {
+			url = "github:nix-community/emacs-overlay";
+			flake = false;
+		};
+
 	};
 
-	outputs = { self, nixpkgs, home-manager, ... }@inputs: 
+	outputs = { self, nixpkgs, home-manager, nur, ... }@inputs: 
 		let
 		system = "x86_64-linux";
 	user = "sahir";
