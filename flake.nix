@@ -21,20 +21,13 @@
 
 	outputs = { self, nixpkgs, home-manager, nur, ... }@inputs: 
 		let
-		system = "x86_64-linux";
 	user = "sahir";
-	pkgs = import nixpkgs {
-		inherit system;
-		config.allowUnfree = true;
-	};
-	lib = nixpkgs.lib;
 		in {
-			nixosConfigurations = {
-				laptop = lib.nixosSystem {
-					inherit system;
-					specialArgs = inputs;
-					modules = [ ./configuration.nix ];
-				};
-			};
+			nixosConfigurations = (
+				import ./hosts {
+					inherit (nixpkgs) lib;
+					inherit inputs nixpkgs home-manager nur user;
+				}
+			);
 		};
 }
