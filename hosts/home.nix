@@ -38,6 +38,43 @@
 			enable = true;
 			settings = builtins.fromJSON (builtins.readFile ./files/alacritty.json);
 		};
+		tmux = {
+			enable = true;
+			baseIndex = 1;
+			clock24 = true;
+			historyLimit = 100000;
+			keyMode = "vi";
+			newSession = true;
+			resizeAmount = 20;
+			customPaneNavigationAndResize = true;
+			prefix = "C-a";
+			shell = "\${pkgs.zsh}/bin/zsh";
+			shortcut = "a";
+			terminal = "screen-256color";
+			extraConfig = 
+			''
+			#bind Ctrl-K to sync panes
+			bind C-k set-window-option synchronize-panes
+			# set numbering from 1 instead of 0 for panes
+			setw -g pane-base-index 1
+			# split windows
+			bind | split-window -h
+			bind - split-window -v
+			# reload config file
+			bind r source-file ~/.tmux.conf
+			set -g set-clipboard on
+			'';
+			plugins = with pkgs; [
+				tmuxPlugins.yank
+				{
+					plugin = tmuxPlugins.jump;
+					extraConfig =
+					''
+					set -g @jump-key ';'
+					'';
+				}
+			];
+		};
 	};
 }
 
