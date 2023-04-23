@@ -5,12 +5,19 @@
 		username = "${user}";
 		packages = with pkgs; [
 				alacritty 
-				neovim 
 				emacs 
 				firefox
 				google-chrome
 				tmux
         nodejs
+				neovim 
+        gcc
+        tree-sitter
+        (python39.withPackages (pp: with pp; [
+          pynvim
+        ]))
+        fzf
+        ripgrep
 		];
 		stateVersion = "22.11";
 	};

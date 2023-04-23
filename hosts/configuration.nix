@@ -6,7 +6,14 @@
     extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" ];
     shell = pkgs.zsh;
   };
-  security.sudo.wheelNeedsPassword = false;
+  security = {
+    sudo =  {
+      wheelNeedsPassword = false;
+    };
+    polkit = {
+      enable = true;
+    };
+  };
 
   environment.pathsToLink = [ "/libexec" ];
 
@@ -32,21 +39,19 @@
 
   services = {
     xserver = {
-      enable = true;
+      enable = false;
       layout = "us";
 
       desktopManager = {
         xterm.enable = false;
-# plasma5.enable = true;
       };
 
       displayManager = {
         defaultSession = "none+i3";
-# sddm.enable = true;
       };
 
       windowManager.i3 = {
-        enable = true;
+        enable = false;
         extraPackages = with pkgs; [
           dmenu
             i3status
@@ -65,12 +70,23 @@
       jack.enable = true;
     };
     openssh.enable = true;
+    blueman.enable = true;
   };
   environment.systemPackages = with pkgs; [
     wget
       lxappearance
-      libgccjit               # required by NvChad
-      ripgrep                 # required by NvChad
+      wayland
+      grim # screenshot
+      slurp # screenshot
+      wl-clipboard
+      dunst # notifications daemon
+      waybar-hyprland
+      wofi
+      pulseaudio
+      blueman
+      wpaperd
+      light # adjust backlight brightness
+
   ];
 
   programs = {
@@ -81,6 +97,10 @@
     };
     zsh = {
       enable = true;
+    };
+    hyprland = {
+      enable = true;
+      nvidiaPatches = false;
     };
   };
 
@@ -102,6 +122,8 @@
   nix = {
     settings ={
       auto-optimise-store = true;
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
     gc = { 
       automatic = true;
