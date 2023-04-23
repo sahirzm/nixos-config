@@ -10,6 +10,7 @@
 				firefox
 				google-chrome
 				tmux
+        nodejs
 		];
 		stateVersion = "22.11";
 	};

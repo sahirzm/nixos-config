@@ -11,7 +11,7 @@ pkgs = import nixpkgs {
 lib = nixpkgs.lib;
 in
 {
-	laptop = let
+	sahir-nixos-laptop = let
 		host = {
 			hostName = "sahir-nixos-laptop";
 		};
