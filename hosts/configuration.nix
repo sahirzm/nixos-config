@@ -100,7 +100,7 @@
     };
     hyprland = {
       enable = true;
-      nvidiaPatches = false;
+      nvidiaPatches = true;
     };
   };
 
