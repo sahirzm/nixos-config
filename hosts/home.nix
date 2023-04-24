@@ -46,7 +46,7 @@
     };
     alacritty = {
       enable = true;
-      settings = builtins.fromJSON (builtins.readFile ./files/alacritty.json);
+      settings = builtins.fromJSON (builtins.readFile ./dotfiles/alacritty.json);
     };
     tmux = {
       enable = true;
@@ -87,10 +87,22 @@
     };
   };
 
+  xdg.configFile = {
+    "waybar" = {
+      source = ./dotfiles/waybar;
+      target = "waybar";
+      recursive = true;
+    };
+    "hyprland" = {
+      source = ./dotfiles/hypr;
+      target = "hypr";
+      recursive = true;
+    };
+  };
+
   home.file = {
     "doom.d" = {
-      #      source = ./. + builtins.toPath "/files/doom.d";
-      source = ./files/doom.d;
+      source = ./dotfiles/doom.d;
       target = ".doom.d";
       recursive = true;
       onChange = "$HOME/.config/emacs/bin/doom sync";
