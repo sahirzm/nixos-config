@@ -14,19 +14,19 @@
 
 		emacs-overlay = {
 			url = "github:nix-community/emacs-overlay";
-      flake = false;
+			flake = false;
 		};
 
-    hyprland = {
-#        url = "github:hyprwm/Hyprland";
-      url = "github:hyprwm/Hyprland/2df0d034bc4a18fafb3524401eeeceaa6b23e753";
-    };
+		hyprland = {
+			#        url = "github:hyprwm/Hyprland";
+			url = "github:hyprwm/Hyprland/2df0d034bc4a18fafb3524401eeeceaa6b23e753";
+		};
 
 	};
 
 	outputs = { self, nixpkgs, home-manager, nur, hyprland, emacs-overlay, ... }@inputs: 
 		let
-    user = "sahir";
+			user = "sahir";
 		in {
 			nixosConfigurations = (
 				import ./hosts {

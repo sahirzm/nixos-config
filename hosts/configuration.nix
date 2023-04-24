@@ -17,7 +17,7 @@
 
   environment.pathsToLink = [ "/libexec" ];
 
-# Use the systemd-boot EFI boot loader.
+  # Use the systemd-boot EFI boot loader.
   boot.loader = {
     systemd-boot = {
       enable = true;
@@ -54,9 +54,9 @@
         enable = false;
         extraPackages = with pkgs; [
           dmenu
-            i3status
-            i3lock
-            i3blocks
+          i3status
+          i3lock
+          i3blocks
         ];
       };
     };
@@ -72,24 +72,24 @@
     openssh.enable = true;
     blueman.enable = true;
     emacs = {
-        enable = true;
-        package = pkgs.emacsPgtk;
-      };
+      enable = true;
+      package = pkgs.emacsPgtk;
+    };
   };
   environment.systemPackages = with pkgs; [
     wget
-      lxappearance
-      wayland
-      grim # screenshot
-      slurp # screenshot
-      wl-clipboard
-      dunst # notifications daemon
-      waybar-hyprland
-      wofi
-      pulseaudio
-      blueman
-      wpaperd
-      light # adjust backlight brightness
+    lxappearance
+    wayland
+    grim # screenshot
+    slurp # screenshot
+    wl-clipboard
+    dunst # notifications daemon
+    waybar-hyprland
+    wofi
+    pulseaudio
+    blueman
+    wpaperd
+    light # adjust backlight brightness
 
   ];
 
@@ -117,23 +117,23 @@
     font-awesome                            # Icons
     corefonts                               # MS
     (nerdfonts.override {                   # Nerdfont Icons override
-     fonts = [
-     "FiraCode"
-     ];
-     })
+      fonts = [
+        "FiraCode"
+      ];
+    })
   ];
 
   nix = {
     settings ={
       auto-optimise-store = true;
       substituters = [
-      "https://nix-community.cachix.org"
-      "https://cache.nixos.org"
+        "https://nix-community.cachix.org"
+        "https://cache.nixos.org"
         "https://hyprland.cachix.org"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-          "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
     };
     gc = { 

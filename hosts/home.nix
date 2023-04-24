@@ -5,18 +5,21 @@
     username = "${user}";
     packages = with pkgs; [
       alacritty 
-        firefox
-        google-chrome
-        tmux
-        nodejs
-        neovim 
-        gcc
-        tree-sitter
-        (python39.withPackages (pp: with pp; [
-                                pynvim
-        ]))
-        fzf
-        ripgrep
+      firefox
+      google-chrome
+      tmux
+      nodejs
+      neovim
+      gcc
+      tree-sitter
+      (python39.withPackages (pp: with pp; [
+        pynvim
+      ]))
+      fzf
+      ripgrep
+      jdk17
+      jetbrains.idea-community
+      dbeaver
     ];
     stateVersion = "22.11";
   };
@@ -31,10 +34,10 @@
       zplug = {
         enable = true;
         plugins = [
-        { name = "zsh-users/zsh-autosuggestions"; }
-        { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
-        { name = "zsh-users/zsh-completions"; }
-        { name = "zsh-users/zsh-syntax-highlighting"; }
+          { name = "zsh-users/zsh-autosuggestions"; }
+          { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
+          { name = "zsh-users/zsh-completions"; }
+          { name = "zsh-users/zsh-syntax-highlighting"; }
         ];
       };
       initExtra = ''
@@ -86,7 +89,7 @@
 
   home.file = {
     "doom.d" = {
-#      source = ./. + builtins.toPath "/files/doom.d";
+      #      source = ./. + builtins.toPath "/files/doom.d";
       source = ./files/doom.d;
       target = ".doom.d";
       recursive = true;
