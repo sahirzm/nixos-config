@@ -78,19 +78,18 @@
   };
   environment.systemPackages = with pkgs; [
     wget
-    lxappearance
+    curl
     wayland
     grim # screenshot
     slurp # screenshot
     wl-clipboard
     dunst # notifications daemon
-    waybar-hyprland
-    wofi
+    waybar-hyprland # status bar
+    wofi # application launcher
     pulseaudio
     blueman
-    wpaperd
+    wpaperd # set background wallpaper
     light # adjust backlight brightness
-
   ];
 
   programs = {
@@ -107,7 +106,6 @@
       nvidiaPatches = true;
     };
   };
-
 
   fonts.fonts = with pkgs; [                # Fonts
     carlito                                 # NixOS
@@ -158,4 +156,3 @@
     stateVersion = "22.11"; 
   };
 }
-

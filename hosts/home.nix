@@ -98,6 +98,16 @@
       target = "hypr";
       recursive = true;
     };
+    "wpaperd" = {
+      source = ./dotfiles/wpaperd;
+      target = "wpaperd";
+      recursive = true;
+    };
+    "wofi" = {
+      source = ./dotfiles/wofi;
+      target = "wofi";
+      recursive = true;
+    };
   };
 
   home.file = {
@@ -109,4 +119,3 @@
     };
   };
 }
-
