@@ -39,7 +39,7 @@
 
   services = {
     xserver = {
-      enable = false;
+      enable = true;
       layout = "us";
 
       desktopManager = {
@@ -47,16 +47,13 @@
       };
 
       displayManager = {
-        defaultSession = "none+i3";
+        sddm.enable = true;
       };
 
       windowManager.i3 = {
-        enable = false;
+        enable = true;
         extraPackages = with pkgs; [
-          dmenu
-          i3status
           i3lock
-          i3blocks
         ];
       };
     };
@@ -73,23 +70,21 @@
     blueman.enable = true;
     emacs = {
       enable = true;
-      package = pkgs.emacsPgtk;
+      package = pkgs.emacsUnstable;
     };
   };
   environment.systemPackages = with pkgs; [
     wget
     curl
-    wayland
-    grim # screenshot
-    slurp # screenshot
-    wl-clipboard
-    dunst # notifications daemon
-    waybar-hyprland # status bar
-    wofi # application launcher
     pulseaudio
     blueman
-    wpaperd # set background wallpaper
-    light # adjust backlight brightness
+    zip
+    unzip
+    rofi
+    polybar
+    dracula-theme
+    lxappearance
+    dunst
   ];
 
   programs = {
@@ -100,10 +95,6 @@
     };
     zsh = {
       enable = true;
-    };
-    hyprland = {
-      enable = true;
-      nvidiaPatches = true;
     };
   };
 
@@ -137,7 +128,7 @@
     gc = { 
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 2d";
+      options = "--delete-older-than 7d";
     };
     package = pkgs.nixVersions.unstable;
     registry.nixpkgs.flake = inputs.nixpkgs;
@@ -150,7 +141,7 @@
   nixpkgs.config.allowUnfree = true;
   system = {
     autoUpgrade = {
-      enable = true;
+      enable = false;
       channel = "https://nixos.org/channels/nixos-unstable";
     };
     stateVersion = "22.11"; 

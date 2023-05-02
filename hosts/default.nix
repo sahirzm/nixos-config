@@ -13,9 +13,9 @@ let
   lib = nixpkgs.lib;
 in
 {
-  sahir-nixos-laptop = let
+  laptop = let
     host = {
-      hostName = "sahir-nixos-laptop";
+      hostName = "nixos-laptop";
     };
   in lib.nixosSystem {
     inherit system;

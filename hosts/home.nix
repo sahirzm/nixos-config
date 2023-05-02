@@ -1,25 +1,27 @@
 { config, builtins, lib, pkgs, user, ... }:
 {
-
   home = {
     username = "${user}";
     packages = with pkgs; [
       alacritty 
-      firefox
-      google-chrome
-      tmux
-      nodejs
-      neovim
-      gcc
-      tree-sitter
-      (python39.withPackages (pp: with pp; [
-        pynvim
-      ]))
-      fzf
-      ripgrep
-      jdk17
-      jetbrains.idea-community
-      dbeaver
+        firefox
+        google-chrome
+        tmux
+        nodejs
+        neovim
+        gcc
+        tree-sitter
+        (python39.withPackages (pp: with pp; [
+                                pynvim
+        ]))
+        fzf
+        ripgrep
+        jdk17
+        jetbrains.idea-community
+        dbeaver
+        neofetch
+        feh
+        lsd
     ];
     stateVersion = "22.11";
   };
@@ -34,19 +36,22 @@
       zplug = {
         enable = true;
         plugins = [
-          { name = "zsh-users/zsh-autosuggestions"; }
-          { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
-          { name = "zsh-users/zsh-completions"; }
-          { name = "zsh-users/zsh-syntax-highlighting"; }
+        { name = "zsh-users/zsh-autosuggestions"; }
+        { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
+        { name = "zsh-users/zsh-completions"; }
+        { name = "zsh-users/zsh-syntax-highlighting"; }
         ];
+      };
+      shellAliases = {
+        ls = "lsd";
       };
       initExtra = ''
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+        neofetch
         '';
     };
     alacritty = {
       enable = true;
-      settings = builtins.fromJSON (builtins.readFile ./dotfiles/alacritty.json);
     };
     tmux = {
       enable = true;
@@ -58,7 +63,6 @@
       resizeAmount = 20;
       customPaneNavigationAndResize = true;
       prefix = "C-a";
-      shell = "\${pkgs.zsh}/bin/zsh";
       shortcut = "a";
       terminal = "screen-256color";
       extraConfig = 
@@ -73,16 +77,12 @@
 # reload config file
         bind r source-file ~/.tmux.conf
         set -g set-clipboard on
+        set -g @jump-key ';'
         '';
       plugins = with pkgs; [
         tmuxPlugins.yank
-        {
-          plugin = tmuxPlugins.jump;
-          extraConfig =
-            ''
-            set -g @jump-key ';'
-            '';
-        }
+        tmuxPlugins.dracula
+        tmuxPlugins.jump
       ];
     };
   };
@@ -108,14 +108,31 @@
       target = "wofi";
       recursive = true;
     };
-  };
-
-  home.file = {
-    "doom.d" = {
-      source = ./dotfiles/doom.d;
-      target = ".doom.d";
+    "doom" = {
+      source = ./dotfiles/doom;
+      target = "doom";
       recursive = true;
       onChange = "$HOME/.config/emacs/bin/doom sync";
+    };
+    "i3" = {
+      source = ./dotfiles/i3;
+      target = "i3";
+      recursive = true;
+    };
+    "alacritty" = {
+      source = ./dotfiles/alacritty;
+      target = "alacritty";
+      recursive = true;
+    };
+    "rofi" = {
+      source = ./dotfiles/rofi;
+      target = "rofi";
+      recursive = true;
+    };
+    "polybar" = {
+      source = ./dotfiles/polybar;
+      target = "polybar";
+      recursive = true;
     };
   };
 }
