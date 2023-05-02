@@ -184,4 +184,5 @@ bindsym $mod+r mode "resize"
 gaps inner 5px
 default_border pixel
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id feh --bg-scale --randomize $HOME/.config/wpaperd/wallpapers/*
+exec --no-startup-id feh --bg-scale --randomize $HOME/.config/wpaperd/wallpapers/*
+exec --no-startup-id picom

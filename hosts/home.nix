@@ -22,6 +22,7 @@
         neofetch
         feh
         lsd
+        picom
     ];
     stateVersion = "22.11";
   };
@@ -132,6 +133,11 @@
     "polybar" = {
       source = ./dotfiles/polybar;
       target = "polybar";
+      recursive = true;
+    };
+    "picom" = {
+      source = ./dotfiles/picom;
+      target = "picom";
       recursive = true;
     };
   };
