@@ -32,7 +32,7 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
-          inherit user host builtins;
+          inherit user host builtins inputs;
         };
         home-manager.users.${user} = {
           imports = [

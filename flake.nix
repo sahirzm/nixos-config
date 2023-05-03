@@ -22,9 +22,14 @@
 			url = "github:hyprwm/Hyprland/2df0d034bc4a18fafb3524401eeeceaa6b23e753";
 		};
 
+    ranger_devicons = {
+      url = "github:alexanderjeurissen/ranger_devicons";
+      flake = false;
+    };
+
 	};
 
-	outputs = { self, nixpkgs, home-manager, nur, hyprland, emacs-overlay, ... }@inputs: 
+	outputs = { self, nixpkgs, home-manager, nur, hyprland, emacs-overlay, ranger_devicons, ... }@inputs: 
 		let
 			user = "sahir";
 		in {

@@ -1,4 +1,4 @@
-{ config, builtins, lib, pkgs, user, ... }:
+{ config, builtins, lib, pkgs, user, inputs, ... }:
 {
   home = {
     username = "${user}";
@@ -23,6 +23,7 @@
         feh
         lsd
         picom
+        ranger
     ];
     stateVersion = "22.11";
   };
@@ -44,7 +45,7 @@
         ];
       };
       shellAliases = {
-        ls = "lsd";
+        ls = "lsd -l";
       };
       initExtra = ''
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -140,5 +141,21 @@
       target = "picom";
       recursive = true;
     };
+    "ranger" = {
+      source = ./dotfiles/ranger;
+      target = "ranger";
+      recursive = true;
+    };
+    "ranger_devicons" = {
+        source = inputs.ranger_devicons;
+        target = "ranger/plugins/ranger_devicons";
+    };
   };
+
+  home.file = {
+    "Xresources" = {
+        source = ./dotfiles/Xresources.txt;
+        target = ".Xresources";
+      };
+    };
 }
