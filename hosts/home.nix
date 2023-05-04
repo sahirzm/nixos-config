@@ -4,26 +4,40 @@
     username = "${user}";
     packages = with pkgs; [
       alacritty 
-        firefox
-        google-chrome
-        tmux
-        nodejs
-        neovim
-        gcc
-        tree-sitter
-        (python39.withPackages (pp: with pp; [
-                                pynvim
-        ]))
-        fzf
-        ripgrep
-        jdk17
-        jetbrains.idea-community
-        dbeaver
-        neofetch
-        feh
-        lsd
-        picom
-        ranger
+      firefox
+      google-chrome
+      tmux
+      nodejs
+      neovim
+      gcc
+      tree-sitter
+      (python39.withPackages (pp: with pp; [
+        pynvim
+      ]))
+      fzf
+      ripgrep
+      jdk17
+      jetbrains.idea-community
+      dbeaver
+      neofetch
+      feh # wallpaper
+      lsd # beautiful directory listing
+      picom # manage window transparency
+      ranger # terminal file browser
+      fd # faster file search
+      # faster grep options
+      ripgrep
+      fzf
+      silver-searcher
+      bat # better cat
+      diff-so-fancy # good looking diffs filter for git
+      tldr # simplified man pages
+      tree
+      broot
+      jq # JSON processor
+      curl
+      httpie # better curl
+      docker
     ];
     stateVersion = "22.11";
   };
@@ -38,10 +52,10 @@
       zplug = {
         enable = true;
         plugins = [
-        { name = "zsh-users/zsh-autosuggestions"; }
-        { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
-        { name = "zsh-users/zsh-completions"; }
-        { name = "zsh-users/zsh-syntax-highlighting"; }
+          { name = "zsh-users/zsh-autosuggestions"; }
+          { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
+          { name = "zsh-users/zsh-completions"; }
+          { name = "zsh-users/zsh-syntax-highlighting"; }
         ];
       };
       shellAliases = {
@@ -147,15 +161,15 @@
       recursive = true;
     };
     "ranger_devicons" = {
-        source = inputs.ranger_devicons;
-        target = "ranger/plugins/ranger_devicons";
+      source = inputs.ranger_devicons;
+      target = "ranger/plugins/ranger_devicons";
     };
   };
 
   home.file = {
     "Xresources" = {
-        source = ./dotfiles/Xresources.txt;
-        target = ".Xresources";
-      };
+      source = ./dotfiles/Xresources.txt;
+      target = ".Xresources";
     };
+  };
 }
