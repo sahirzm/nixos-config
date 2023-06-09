@@ -70,7 +70,7 @@
     blueman.enable = true;
     emacs = {
       enable = true;
-      package = pkgs.emacsUnstable;
+      package = pkgs.emacs-unstable;
     };
   };
   environment.systemPackages = with pkgs; [
