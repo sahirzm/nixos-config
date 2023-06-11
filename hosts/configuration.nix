@@ -37,10 +37,16 @@
     keyMap = "us";
   };
 
+  hardware = {
+    opengl.enable = true;
+    bluetooth.enable = true;
+  };
+
   services = {
     xserver = {
       enable = true;
       layout = "us";
+      videoDrivers = ["nvidia"];
 
       desktopManager = {
         xterm.enable = false;
