@@ -11,11 +11,10 @@ let
   };
 
   lib = nixpkgs.lib;
-in
-{
-  laptop = let
+
+  configDef = systemName: let
     host = {
-      hostName = "nixos-laptop";
+      hostName = "nixos-${systemName}";
     };
   in lib.nixosSystem {
     inherit system;
@@ -25,7 +24,7 @@ in
     modules = [
       inputs.nur.nixosModules.nur
       inputs.hyprland.nixosModules.default
-      ./laptop
+      ./${systemName}
       ./configuration.nix
 
       home-manager.nixosModules.home-manager {
@@ -37,7 +36,7 @@ in
         home-manager.users.${user} = {
           imports = [
             ./home.nix
-            ./laptop/home.nix
+            ./${systemName}/home.nix
           ];
         };
       }
@@ -49,4 +48,9 @@ in
       }
     ];
   };
+
+in
+{
+  laptop = configDef "laptop";
+  desktop = configDef "desktop";
 }
