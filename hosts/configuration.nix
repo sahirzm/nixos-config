@@ -108,6 +108,7 @@
     zsh = {
       enable = true;
     };
+    udevil.enable = true;
   };
 
   fonts.fonts = with pkgs; [                # Fonts
