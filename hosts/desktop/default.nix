@@ -12,4 +12,10 @@
     };
   };
 
+  environment = {
+    variables = {
+      PRIMARY_MONITOR = "HDMI-0";
+    };
+  };
+
 }
