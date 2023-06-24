@@ -24,8 +24,8 @@ let
     modules = [
       inputs.nur.nixosModules.nur
       inputs.hyprland.nixosModules.default
-      ./${systemName}
       ./configuration.nix
+      ./${systemName}
 
       home-manager.nixosModules.home-manager {
         home-manager.useGlobalPkgs = true;
