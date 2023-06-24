@@ -172,4 +172,8 @@
       target = ".Xresources";
     };
   };
+
+  services = {
+    mpris-proxy.enable = true;
+  };
 }

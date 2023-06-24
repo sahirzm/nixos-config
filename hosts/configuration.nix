@@ -25,6 +25,7 @@
     };
     efi.canTouchEfiVariables = true;
   };
+  boot.supportedFilesystems = [ "ntfs" ];
 
   networking.hostName = "${host.hostName}";
   networking.networkmanager.enable = true;
@@ -39,7 +40,14 @@
 
   hardware = {
     opengl.enable = true;
-    bluetooth.enable = true;
+    bluetooth = {
+      enable = true;
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
+    };
     nvidia = {
       modesetting = {
         enable = true;
