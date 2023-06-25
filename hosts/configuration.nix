@@ -1,5 +1,12 @@
 { config, lib, pkgs, inputs, user, host, ... }:
-{
+let 
+  mPolybar = pkgs.polybar.override {
+    i3Support = true;
+    alsaSupport = true;
+    githubSupport = true;
+    pulseSupport = true;
+  };
+in {
 
   users.users.${user} = {
     isNormalUser = true;
@@ -101,7 +108,7 @@
     zip
     unzip
     rofi
-    polybar
+    mPolybar
     dracula-theme
     lxappearance
     dunst
