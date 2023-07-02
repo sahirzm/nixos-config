@@ -112,6 +112,7 @@ in {
     dracula-theme
     lxappearance
     dunst
+    vlc
   ];
 
   programs = {
