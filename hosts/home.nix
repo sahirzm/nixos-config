@@ -84,20 +84,19 @@
       extraConfig = 
         ''
 #bind Ctrl-K to sync panes
-        bind C-k set-window-option synchronize-panes
+bind C-k set-window-option synchronize-panes
 # set numbering from 1 instead of 0 for panes
-        setw -g pane-base-index 1
+setw -g pane-base-index 1
 # split windows
-        bind | split-window -h
-        bind - split-window -v
+bind | split-window -h
+bind - split-window -v
 # reload config file
-        bind r source-file ~/.tmux.conf
-        set -g set-clipboard on
-        set -g @jump-key ';'
+bind r source-file ~/.tmux.conf
+set -g set-clipboard on
+set -g @jump-key ';'
         '';
       plugins = with pkgs; [
         tmuxPlugins.yank
-        tmuxPlugins.dracula
         tmuxPlugins.jump
       ];
     };
