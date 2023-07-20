@@ -113,6 +113,7 @@ in {
     lxappearance
     dunst
     vlc
+    libreoffice
   ];
 
   programs = {
