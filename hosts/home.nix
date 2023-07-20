@@ -38,6 +38,7 @@
       curl
       httpie # better curl
       docker
+      nil # LSP for nix
     ];
     stateVersion = "22.11";
   };
@@ -46,6 +47,35 @@
       enable = true;
       userEmail = "sahirzm@gmail.com";
       userName = "Sahir Maredia";
+      aliases = {
+        dag = "log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(white)- %an%C(reset)' --all";
+        graph = "log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset'";
+      };
+      diff-so-fancy.enable = true;
+      extraConfig = {
+        pull = {
+          rebase = true;
+        };
+        core = {
+          excludesFile = "$HOME/.config/git/exclude";
+          fileMode = false;
+        };
+        color = {
+          ui = "auto";
+        };
+        push = {
+          default = "simple";
+        };
+        difftool = {
+          prompt = true;
+        };
+        diff = {
+          tool = "nvimdiff";
+        };
+        "difftool \"nvimdiff\"" = {
+          cmd = "nvim -d \"\$LOCAL\" \"\$REMOTE\"";
+        };
+      };
     };
     zsh = {
       enable = true;
@@ -162,6 +192,13 @@ set -g @jump-key ';'
     "ranger_devicons" = {
       source = inputs.ranger_devicons;
       target = "ranger/plugins/ranger_devicons";
+    };
+    "gitexclude" = {
+      text = ''
+# projectile
+.projectile
+'';
+      target = "git/exclude";
     };
   };
 
