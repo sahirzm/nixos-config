@@ -99,6 +99,20 @@ in {
       enable = true;
       package = pkgs.emacs-unstable;
     };
+    keyd = {
+      enable = true;
+      keyboards = {
+        default = {
+          ids = ["*"];
+          settings = {
+            main = {
+              capslock = "overload(control, esc)";
+              esc = "capslock";
+            };
+          };
+        };
+      };
+    };
   };
   environment.systemPackages = with pkgs; [
     wget
