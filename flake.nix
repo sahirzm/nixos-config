@@ -18,8 +18,7 @@
 		};
 
 		hyprland = {
-			#        url = "github:hyprwm/Hyprland";
-			url = "github:hyprwm/Hyprland/2df0d034bc4a18fafb3524401eeeceaa6b23e753";
+			        url = "github:hyprwm/Hyprland";
 		};
 
     ranger_devicons = {
@@ -27,14 +26,9 @@
       flake = false;
     };
 
-    polybar-themes = {
-      url = "github:adi1090x/polybar-themes";
-      flake = false;
-    };
-
 	};
 
-	outputs = { self, nixpkgs, home-manager, nur, hyprland, emacs-overlay, ranger_devicons, polybar-themes, ... }@inputs: 
+	outputs = { self, nixpkgs, home-manager, nur, hyprland, emacs-overlay, ranger_devicons, ... }@inputs: 
 		let
 			user = "sahir";
 		in {
