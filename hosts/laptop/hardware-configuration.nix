@@ -14,29 +14,23 @@
   # boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
   boot.extraModulePackages = [ ];
   boot.initrd.luks.devices = {
-	  cryptlvm = {
-		  device = "/dev/disk/by-uuid/399ab157-8c8f-470a-9aa4-3b92cf8248e1";
-		  preLVM = true;
-	  };
+    cryptlvm = {
+      device = "/dev/disk/by-uuid/df5e6764-4761-4e0a-b8ed-4f8a223187c2";
+      preLVM = true;
+    };
+  };
+  fileSystems."/" =
+  { device = "/dev/disk/by-uuid/3e22133a-5f2c-4684-9c9c-aaa552629512";
+    fsType = "ext4";
   };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/e2187ae6-f80d-4fed-99f7-d9296f7312a5";
-      fsType = "ext4";
-    };
-
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2511-82E8";
-      fsType = "vfat";
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/9b4548eb-8cb2-420a-b9bd-7fe50d167b59";
-      fsType = "ext4";
-    };
+  { device = "/dev/disk/by-uuid/65A5-5070";
+    fsType = "vfat";
+  };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/ee669d4b-3023-4cf0-ba93-b9689b68684c"; }
+    [ { device = "/dev/disk/by-uuid/97ec6bfb-39d2-4618-9c5f-9d91ba1fd954"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
