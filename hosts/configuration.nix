@@ -6,6 +6,10 @@ let
     githubSupport = true;
     pulseSupport = true;
   };
+  myEmacsClientSrc = builtins.readFile ./dotfiles/shellScripts/emacsClientLauncher;
+  myEmacsClient = (pkgs.writeScriptBin "emc" myEmacsClientSrc).overrideAttrs(old: {
+  	buildCommands = "${old.buildCommand}\n patchShebangs $out";
+  });
 in {
 
   users.users.${user} = {
@@ -96,7 +100,7 @@ in {
     openssh.enable = true;
     blueman.enable = true;
     emacs = {
-      enable = true;
+      enable = false;
       package = pkgs.emacs-unstable;
     };
     keyd = {
@@ -107,7 +111,6 @@ in {
           settings = {
             main = {
               capslock = "overload(control, esc)";
-              esc = "capslock";
             };
           };
         };
@@ -128,6 +131,7 @@ in {
     dunst
     vlc
     libreoffice
+    myEmacsClient
   ];
 
   programs = {
@@ -149,7 +153,7 @@ in {
     };
   };
 
-  fonts.fonts = with pkgs; [                # Fonts
+  fonts.packages = with pkgs; [                # Fonts
     carlito                                 # NixOS
     vegur                                   # NixOS
     source-code-pro

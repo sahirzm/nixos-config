@@ -27,9 +27,14 @@
       flake = false;
     };
 
+    polybar-themes = {
+      url = "github:adi1090x/polybar-themes";
+      flake = false;
+    };
+
 	};
 
-	outputs = { self, nixpkgs, home-manager, nur, hyprland, emacs-overlay, ranger_devicons, ... }@inputs: 
+	outputs = { self, nixpkgs, home-manager, nur, hyprland, emacs-overlay, ranger_devicons, polybar-themes, ... }@inputs: 
 		let
 			user = "sahir";
 		in {

@@ -1,4 +1,19 @@
-{ config, builtins, lib, pkgs, user, inputs, ... }:
+{ pkgs, user, inputs, ... }:
+let
+  polybar-themes = inputs.polybar-themes;
+  polybar-themes-pkg = pkgs.stdenvNoCC.mkDerivation {
+    pname = "polybar-themes";
+    version = "1.0.0";
+    src = inputs.polybar-themes;
+    installPhase = ''
+                 runHook preInstall
+                 cp -r bitmap $out/
+                 mkdir -p $out/share/fonts/truetype
+                 cp -r fonts/* $out/share/fonts/truetype
+                 runHook postInstall
+    '';
+  };
+in
 {
   home = {
     username = "${user}";
@@ -39,6 +54,7 @@
       httpie # better curl
       docker
       nil # LSP for nix
+      polybar-themes-pkg
     ];
     stateVersion = "22.11";
   };
@@ -130,6 +146,10 @@ set -g @jump-key ';'
         tmuxPlugins.jump
       ];
     };
+    emacs = {
+      enable = true;
+      package = pkgs.emacs-unstable;
+    };
   };
 
   xdg.configFile = {
@@ -178,6 +198,7 @@ set -g @jump-key ';'
       source = ./dotfiles/polybar;
       target = "polybar";
       recursive = true;
+      enable = false;
     };
     "picom" = {
       source = ./dotfiles/picom;
@@ -207,9 +228,20 @@ set -g @jump-key ';'
       source = ./dotfiles/Xresources.txt;
       target = ".Xresources";
     };
+    "polybar-theme" = {
+      source = "${polybar-themes-pkg}";
+      target = ".config/polybar";
+      recursive = true;
+      enable = true;
+    };
   };
 
   services = {
     mpris-proxy.enable = true;
   };
+
+  fonts.fontconfig = {
+    enable = true;
+  };
 }
+  
