@@ -132,6 +132,7 @@ in {
     vlc
     libreoffice
     myEmacsClient
+    pywal
   ];
 
   programs = {
@@ -144,6 +145,7 @@ in {
       enable = true;
     };
     udevil.enable = true;
+    thunar.enable = true;
   };
 
   virtualisation = {

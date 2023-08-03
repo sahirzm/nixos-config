@@ -5,7 +5,7 @@ in
   home = {
     username = "${user}";
     packages = with pkgs; [
-      alacritty 
+      alacritty
       firefox
       google-chrome
       tmux
@@ -16,9 +16,6 @@ in
       (python39.withPackages (pp: with pp; [
         pynvim
       ]))
-      fzf
-      ripgrep
-      jdk17
       jetbrains.idea-community
       dbeaver
       neofetch
@@ -41,6 +38,7 @@ in
       httpie # better curl
       docker
       nil # LSP for nix
+      exa # better ls
     ];
     stateVersion = "22.11";
   };
