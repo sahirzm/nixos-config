@@ -13,6 +13,7 @@ in
       neovim
       gcc
       tree-sitter
+      jdk17
       (python39.withPackages (pp: with pp; [
         pynvim
       ]))
@@ -136,6 +137,7 @@ set -g @jump-key ';'
     };
     emacs = {
       enable = true;
+      package = pkgs.emacs-unstable;
     };
   };
 
