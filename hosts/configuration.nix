@@ -132,7 +132,6 @@ in {
     vlc
     libreoffice
     myEmacsClient
-    pywal
   ];
 
   programs = {
@@ -167,6 +166,7 @@ in {
         "FiraCode"
       ];
     })
+    emacs-all-the-icons-fonts
   ];
 
   nix = {
